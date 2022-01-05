@@ -42,6 +42,6 @@ class Lines implements Countable, IteratorAggregate
 
     public function __toString(): string
     {
-        return implode("\n", $this->lines);
+        return implode(PHP_EOL, $this->lines);
     }
 }

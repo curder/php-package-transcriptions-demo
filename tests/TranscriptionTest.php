@@ -37,4 +37,18 @@ class TranscriptionTest extends TestCase
 
         $this->assertStringNotContainsString('WEBVTT', $transaction);
     }
+
+    /** @test */
+    public function it_renders_the_lines_as_html(): void
+    {
+        $transaction = Transcription::load(__DIR__ . '/stubs/basic-example.vtt');
+
+        $output = <<<DOC
+<a href="?t=00:03">Here is an</a>
+<a href="?t=00:04">example of a VTT file.</a>
+DOC;
+
+        $this->assertEquals($output, $transaction->htmlLines());
+
+    }
 }

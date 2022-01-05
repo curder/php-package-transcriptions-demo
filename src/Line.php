@@ -17,6 +17,19 @@ class Line
         $this->body = $body;
     }
 
+    public function toAnchorTag(): string
+    {
+
+        return sprintf('<a href="?t=%s">%s</a>', $this->beginningTimestamp(), $this->body);
+    }
+
+    public function beginningTimestamp()
+    {
+        preg_match('/^\d{2}:(\d{2}:\d{2})\.\d{3}/', $this->timestamp, $matches);
+
+        return $matches[1];
+    }
+
     public static function valid(string $line) : bool
     {
         return $line !== 'WEBVTT' && $line !== '' && !is_numeric($line);

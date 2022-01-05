@@ -30,6 +30,13 @@ class Transcription
 
         return $lines;
     }
+    public function htmlLines(): string
+    {
+        return implode("\n", array_map(
+                fn(Line $line) => $line->toAnchorTag(),
+                $this->lines()
+            ));
+    }
 
     public function __toString(): string
     {

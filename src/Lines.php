@@ -1,7 +1,6 @@
 <?php
 namespace Curder\PhpPackageTranscriptionsDemo;
 
-
 use Countable;
 use ArrayIterator;
 use IteratorAggregate;

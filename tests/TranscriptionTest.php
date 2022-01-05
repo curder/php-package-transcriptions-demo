@@ -1,9 +1,10 @@
 <?php
+
 namespace Tests;
 
 use Curder\PhpPackageTranscriptionsDemo\Line;
-use PHPUnit\Framework\TestCase;
 use Curder\PhpPackageTranscriptionsDemo\Transcription;
+use PHPUnit\Framework\TestCase;
 
 class TranscriptionTest extends TestCase
 {
@@ -14,10 +15,10 @@ class TranscriptionTest extends TestCase
         $this->transcription = Transcription::load(
             __DIR__ . '/stubs/basic-example.vtt'
         );
-
     }
+
     /** @test */
-    public function it_can_load_a_vtt_file() : void
+    public function it_can_load_a_vtt_file(): void
     {
         $this->assertStringContainsString('Here is a', $this->transcription);
         $this->assertStringContainsString('example of a VTT file.', $this->transcription);
@@ -45,6 +46,5 @@ class TranscriptionTest extends TestCase
 DOC;
 
         $this->assertEquals($output, $this->transcription->lines()->asHtml());
-
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Curder\PhpPackageTranscriptionsDemo;
 
 /**
@@ -28,7 +29,7 @@ class Transcription
         ));
     }
 
-    protected function discardInvalidLines(array $lines) : array
+    protected function discardInvalidLines(array $lines): array
     {
         return array_slice(array_filter(array_map('rtrim', $lines)), 1);
     }

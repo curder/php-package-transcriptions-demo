@@ -1,8 +1,9 @@
 <?php
+
 namespace Curder\PhpPackageTranscriptionsDemo;
 
-use Countable;
 use ArrayIterator;
+use Countable;
 use IteratorAggregate;
 
 /**
@@ -19,7 +20,6 @@ class Lines implements Countable, IteratorAggregate
         $this->lines = $lines;
     }
 
-
     public function asHtml(): string
     {
         $formattedLines = array_map(
@@ -30,12 +30,12 @@ class Lines implements Countable, IteratorAggregate
         return (new static($formattedLines))->__toString();
     }
 
-    public function count() : int
+    public function count(): int
     {
         return count($this->lines);
     }
 
-    public function getIterator() : ArrayIterator
+    public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->lines);
     }

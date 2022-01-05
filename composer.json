@@ -1,0 +1,17 @@
+{
+    "name": "curder/php-package-transcriptions-demo",
+    "autoload": {
+        "psr-4": {
+            "Curder\\PhpPackageTranscriptionsDemo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "curder",
+            "email": "q.curder@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}

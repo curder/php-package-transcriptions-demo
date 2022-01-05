@@ -1,6 +1,7 @@
 <?php
 namespace Tests;
 
+use Curder\PhpPackageTranscriptionsDemo\Line;
 use PHPUnit\Framework\TestCase;
 use Curder\PhpPackageTranscriptionsDemo\Transcription;
 
@@ -18,11 +19,13 @@ class TranscriptionTest extends TestCase
     }
 
     /** @test */
-    public function it_can_convert_to_an_array_of_lines(): void
+    public function it_can_convert_to_an_array_of_line_objects(): void
     {
         $file = __DIR__.'/stubs/basic-example.vtt';
+        $lines = Transcription::load($file)->lines();
 
-        $this->assertCount(4, Transcription::load($file)->lines());
+        $this->assertCount(2, $lines);
+        $this->assertContainsOnlyInstancesOf(Line::class, $lines);
     }
 
     /** @test */
@@ -33,6 +36,5 @@ class TranscriptionTest extends TestCase
         $transaction = Transcription::load($file);
 
         $this->assertStringNotContainsString('WEBVTT', $transaction);
-        $this->assertCount(4, $transaction->lines());
     }
 }

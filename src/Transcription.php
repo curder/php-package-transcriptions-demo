@@ -10,18 +10,25 @@ class Transcription
 {
     protected array $lines;
 
+    public function __construct(array $lines)
+    {
+        $this->lines = $this->discardInvalidLines(array_map('trim', $lines));
+    }
+
     public static function load(string $path): self
     {
-        $instance = new static;
-
-        $instance->lines = $instance->discardsIrrelevantLines(file($path));
-
-        return $instance;
+        return new static(file($path));
     }
 
     public function lines(): array
     {
-        return $this->lines;
+        $lines = [];
+
+        for ($i = 0, $length = count($this->lines); $i < $length; $i += 2 ) {
+            $lines[] = new Line($this->lines[$i], $this->lines[$i+1]);
+        }
+
+        return $lines;
     }
 
     public function __toString(): string
@@ -29,13 +36,8 @@ class Transcription
         return implode('', $this->lines);
     }
 
-    protected function discardsIrrelevantLines(array $lines) : array
+    protected function discardInvalidLines(array $lines) : array
     {
-        $lines = array_map('rtrim', $lines);
-
-        return array_filter(
-            $lines,
-            fn ($line) => $line !== 'WEBVTT' && $line !== '' && !is_numeric($line)
-        );
+        return array_values(array_filter($lines, static fn ($line) => Line::valid($line)));
     }
 }

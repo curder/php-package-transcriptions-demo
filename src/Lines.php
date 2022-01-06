@@ -2,9 +2,9 @@
 
 namespace Curder\PhpPackageTranscriptionsDemo;
 
-use Countable;
 use ArrayAccess;
 use ArrayIterator;
+use Countable;
 use IteratorAggregate;
 
 /**
@@ -41,8 +41,7 @@ class Lines implements Countable, IteratorAggregate, ArrayAccess
         return new ArrayIterator($this->lines);
     }
 
-
-    public function offsetExists($key) : bool
+    public function offsetExists($key): bool
     {
         return isset($this->lines[$key]);
     }

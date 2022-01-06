@@ -5,6 +5,7 @@ namespace Curder\PhpPackageTranscriptionsDemo;
 use ArrayAccess;
 use ArrayIterator;
 use Countable;
+use JsonSerializable;
 use IteratorAggregate;
 
 /**
@@ -12,7 +13,7 @@ use IteratorAggregate;
  *
  * @package \Curder\PhpPackageTranscriptionsDemo
  */
-class Lines implements Countable, IteratorAggregate, ArrayAccess
+class Lines implements Countable, IteratorAggregate, ArrayAccess, JsonSerializable
 {
     protected array $lines;
 
@@ -63,6 +64,11 @@ class Lines implements Countable, IteratorAggregate, ArrayAccess
     public function offsetUnset($key)
     {
         unset($this->lines[$key]);
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->lines;
     }
 
     public function __toString(): string

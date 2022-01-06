@@ -5,6 +5,7 @@ namespace Tests;
 use ArrayAccess;
 use Curder\PhpPackageTranscriptionsDemo\Line;
 use Curder\PhpPackageTranscriptionsDemo\Transcription;
+use JsonSerializable;
 use PHPUnit\Framework\TestCase;
 
 class TranscriptionTest extends TestCase
@@ -54,8 +55,16 @@ DOC;
     {
         $lines = $this->transcription->lines();
 
-
         $this->assertInstanceOf(ArrayAccess::class, $lines);
         $this->assertInstanceOf(Line::class, $lines[0]);
+    }
+
+    /** @test */
+    public function it_can_render_as_json(): void
+    {
+        $lines = $this->transcription->lines();
+
+        $this->assertInstanceOf(JsonSerializable::class, $lines);
+        $this->assertJson(json_encode($lines));
     }
 }

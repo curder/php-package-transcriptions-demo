@@ -2,8 +2,9 @@
 
 namespace Curder\PhpPackageTranscriptionsDemo;
 
-use ArrayIterator;
 use Countable;
+use ArrayAccess;
+use ArrayIterator;
 use IteratorAggregate;
 
 /**
@@ -11,7 +12,7 @@ use IteratorAggregate;
  *
  * @package \Curder\PhpPackageTranscriptionsDemo
  */
-class Lines implements Countable, IteratorAggregate
+class Lines implements Countable, IteratorAggregate, ArrayAccess
 {
     protected array $lines;
 
@@ -38,6 +39,31 @@ class Lines implements Countable, IteratorAggregate
     public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->lines);
+    }
+
+
+    public function offsetExists($key) : bool
+    {
+        return isset($this->lines[$key]);
+    }
+
+    public function offsetGet($key)
+    {
+        return $this->lines[$key];
+    }
+
+    public function offsetSet($key, $value)
+    {
+        if (is_null($key)) {
+            $this->lines[] = $value;
+        } else {
+            $this->lines[$key] = $value;
+        }
+    }
+
+    public function offsetUnset($key)
+    {
+        unset($this->lines[$key]);
     }
 
     public function __toString(): string

@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use ArrayAccess;
 use Curder\PhpPackageTranscriptionsDemo\Line;
 use Curder\PhpPackageTranscriptionsDemo\Transcription;
 use PHPUnit\Framework\TestCase;
@@ -46,5 +47,15 @@ class TranscriptionTest extends TestCase
 DOC;
 
         $this->assertEquals($output, $this->transcription->lines()->asHtml());
+    }
+
+    /** @test */
+    public function it_supports_array_access(): void
+    {
+        $lines = $this->transcription->lines();
+
+
+        $this->assertInstanceOf(ArrayAccess::class, $lines);
+        $this->assertInstanceOf(Line::class, $lines[0]);
     }
 }

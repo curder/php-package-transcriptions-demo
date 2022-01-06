@@ -11,7 +11,7 @@ class Lines extends Collection
 {
     public function asHtml(): string
     {
-        return $this->map(fn (Line $line) => $line->toAnchorTag());
+        return $this->map(fn (Line $line) => $line->toHtml());
     }
 
     public function __toString(): string

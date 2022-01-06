@@ -23,7 +23,7 @@ class Line
         $this->body = $body;
     }
 
-    public function toAnchorTag(): string
+    public function toHtml(): string
     {
         return sprintf('<a href="?t=%s">%s</a>', $this->beginningTimestamp(), $this->body);
     }

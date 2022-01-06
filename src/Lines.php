@@ -2,10 +2,6 @@
 
 namespace Curder\PhpPackageTranscriptionsDemo;
 
-
-
-use phpDocumentor\Reflection\Types\This;
-
 /**
  * Class Lines
  *

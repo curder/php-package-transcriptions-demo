@@ -5,8 +5,8 @@ namespace Curder\PhpPackageTranscriptionsDemo;
 use ArrayAccess;
 use ArrayIterator;
 use Countable;
-use JsonSerializable;
 use IteratorAggregate;
+use JsonSerializable;
 
 /**
  * Class Lines
